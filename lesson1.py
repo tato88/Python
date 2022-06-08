@@ -111,11 +111,10 @@
 
 # - створити функцію яка повертає найменьше число з ліста
 
-# def find_min_from_list(list):
-#     return min(list)
-#
-#
-# print(find_min_from_list([145, 22, 3, 4]))
+def find_min_from_list(list):
+    print(min(list))
+    return min(list)
+
 
 # - створити функцію яка приймає ліст чисел та складає значення елементів ліста та повертає його.
 
@@ -192,76 +191,37 @@
 
 # 3) вывести табличку умножения с помощью цикла while
 
-a = 1
-b = 1
-z = 0
-table1 = ''
-table2 = ''
-table3 = ''
-table4 = ''
-table5 = ''
-table6 = ''
-table7 = ''
-table8 = ''
-table9 = ''
-
-
-while z < 9:
-    if a * (b + z) < 10:
-        table1 += str(a * (b + z)) + '  '
-    else:
-        table1 += str(a * (b + z)) + ' '
-
-    if ((a + 1) * (b + z)) < 10:
-        table2 += str((a + 1) * (b + z)) + '  '
-    else:
-        table2 += str((a + 1) * (b + z)) + ' '
-
-    if ((a + 2) * (b + z)) < 10:
-        table3 += str((a + 2) * (b + z)) + '  '
-    else:
-        table3 += str((a + 2) * (b + z)) + ' '
-
-    if ((a + 3) * (b + z)) < 10:
-        table4 += str((a + 3) * (b + z)) + '  '
-    else:
-        table4 += str((a + 3) * (b + z)) + ' '
-
-    if ((a + 4) * (b + z)) < 10:
-        table5 += str((a + 4) * (b + z)) + '  '
-    else:
-        table5 += str((a + 4) * (b + z)) + ' '
-
-    if ((a + 5) * (b + z)) < 10:
-        table6 += str((a + 5) * (b + z)) + '  '
-    else:
-        table6 += str((a + 5) * (b + z)) + ' '
-
-    if ((a + 6) * (b + z)) < 10:
-        table7 += str((a + 6) * (b + z)) + '  '
-    else:
-        table7 += str((a + 6) * (b + z)) + ' '
-
-    if ((a + 7) * (b + z)) < 10:
-        table8 += str((a + 7) * (b + z)) + '  '
-    else:
-        table8 += str((a + 7) * (b + z)) + ' '
-
-    if ((a + 8) * (b + z)) < 10:
-        table9 += str((a + 8) * (b + z)) + '  '
-    else:
-        table9 += str((a + 8) * (b + z)) + ' '
-
-    z += 1
-
-print(table1)
-print(table2)
-print(table3)
-print(table4)
-print(table5)
-print(table6)
-print(table7)
-print(table8)
-print(table9)
+# a = 1
+# b = 1
+#
+# while a < 10:
+#     while b < 10:
+#         print(str(a * b) + '  ' if a * b > 9 else str(a * b) + '   ', end = '')
+#         b += 1
+#     print()
+#     a += 1
+#     b = 1
 
 # 4) переделать первое задание под меню с помощью цикла
+
+
+while True:
+    list_1 = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]
+    print('(1) найти min число в листе')
+    print('(2) удалить все дубликаты в листе')
+    print('(3) заменить каждое четвертое значение на "Х"')
+    print('(5) stop')
+    choice = input('wich one?')
+    if choice == '1':
+        find_min_from_list(list_1)
+    elif choice == '2':
+        print(set(list_1))
+    elif choice == '3':
+        i = 3
+        while i <= len(list_1):
+            list_1.pop(i)
+            list_1.insert(i, 'x')
+            i += 4
+        print(list_1)
+    elif choice == '4':
+        break
