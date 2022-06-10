@@ -200,27 +200,27 @@
 # [1, 3, 5, 7, 9, 11, 13]  => [[1], [3, 5], [7, 9, 11], [13]]
 
 
-# n = 22
-# l = []
-# for i in range(n * 2):
-#     if i % 2 == 1:
-#         l.append(i)
-#
-#
-# def l_in_l(random_list):
-#     list_list = []
-#     z = 0
-#     s = 1
-#     step = 1
-#     print(random_list)
-#     for i in random_list:
-#         print(z, s)
-#         test = random_list[z:s]
-#         list_list.append(test)
-#         z = s
-#         step += 1
-#         s += step
-#     return list_list
-#
-#
-# print(l_in_l(l))
+n = 22
+l = []
+for i in range(n * 2):
+    if i % 2 == 1:
+        l.append(i)
+
+
+def l_in_l(random_list):
+    list_list = []
+    z = 0
+    s = 1
+    step = 1
+    print(random_list)
+    for i in random_list:
+        print(z, s)
+        test = random_list[z:s]
+        list_list.append(test)
+        z = s
+        step += 1
+        s += step
+    return ([x for x in list_list if x])
+
+
+print(l_in_l(l))
