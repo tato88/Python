@@ -104,90 +104,90 @@
 # #   ###############################################################################
 
 
-# # Для тех кому скучно:
-# # 1) Створити абстрактний клас Printable який буде описувати абстрактний метод print()
-# # 2) Створити класи Book та Magazine в кожного в конструкторі змінна name, та який наслідуются від класу Printable
-# # 3) Створити клас Main в якому буде:
-# # - змінна класу printable_list яка буде зберігати книжки та журнали
-# # - метод add за допомогою якого можна додавати екземпляри класів в список і робити перевірку чи то що передають є класом Book або Magazine инакше ігрнорувати додавання
-# # - метод show_all_magazines який буде виводити всі журнали викликаючи метод print абстрактного классу
-# # - метод show_all_books який буде виводити всі книги викликаючи метод print абстрактного классу
-# #
-# # Приклад:
-# #
-# # Main.add(Magazine('Magazine1'))
-# #     Main.add(Book('Book1'))
-# #     Main.add(Magazine('Magazine3'))
-# #     Main.add(Magazine('Magazine2'))
-# #     Main.add(Book('Book2'))
-# #
-# #     Main.show_all_magazines()
-# #     print('-' * 40)
-# #     Main.show_all_books()
+# Для тех кому скучно:
+# 1) Створити абстрактний клас Printable який буде описувати абстрактний метод print()
+# 2) Створити класи Book та Magazine в кожного в конструкторі змінна name, та який наслідуются від класу Printable
+# 3) Створити клас Main в якому буде:
+# - змінна класу printable_list яка буде зберігати книжки та журнали
+# - метод add за допомогою якого можна додавати екземпляри класів в список і робити перевірку чи то що передають є класом Book або Magazine инакше ігрнорувати додавання
+# - метод show_all_magazines який буде виводити всі журнали викликаючи метод print абстрактного классу
+# - метод show_all_books який буде виводити всі книги викликаючи метод print абстрактного классу
 #
-# from abc import ABC, abstractmethod
+# Приклад:
 #
+# Main.add(Magazine('Magazine1'))
+#     Main.add(Book('Book1'))
+#     Main.add(Magazine('Magazine3'))
+#     Main.add(Magazine('Magazine2'))
+#     Main.add(Book('Book2'))
 #
-# class Printable(ABC):
-#     @abstractmethod
-#     def print(self):
-#         pass
-#
-#
-# class Book(Printable):
-#     def __init__(self, name):
-#         self.name = name
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def print(self):
-#         print(self.name)
-#
-#
-# class Magazine(Printable):
-#     def __init__(self, name):
-#         self.name = name
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def print(self):
-#         print(self.name)
-#
-#
-# class Main:
-#     list_magazines = []
-#     list_books = []
-#
-#     def add(self, element):
-#         if element.__class__ == Book:
-#             Main.list_books.append(element.name)
-#         elif element.__class__ == Magazine:
-#             Main.list_magazines.append(element.name)
-#         else:
-#             pass
-#
-#     def show_all_books(self):
-#         print(Main.list_books)
-#
-#     def show_all_magazines(self):
-#         print(Main.list_magazines)
-#
-#
-# bazar = Main()
-# book1 = Book('3ti@')
-# book2 = Book('GP')
-# book3 = Book('step')
-# magazine1 = Magazine('Play Boy')
-# magazine2 = Magazine('Cars')
-#
-# bazar.add(book1)
-# bazar.add(magazine2)
-# bazar.add(book2)
-# bazar.add(book3)
-# bazar.add(magazine1)
-#
-# bazar.show_all_books()
-# print('-' * 40)
-# bazar.show_all_magazines()
+#     Main.show_all_magazines()
+#     print('-' * 40)
+#     Main.show_all_books()
+
+from abc import ABC, abstractmethod
+
+
+class Printable(ABC):
+    @abstractmethod
+    def print(self):
+        pass
+
+
+class Book(Printable):
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+    def print(self):
+        print(self.name)
+
+
+class Magazine(Printable):
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+    def print(self):
+        print(self.name)
+
+
+class Main:
+    list_magazines = []
+    list_books = []
+
+    def add(self, element):
+        if element.__class__ == Book:
+            Main.list_books.append(element.name)
+        elif element.__class__ == Magazine:
+            Main.list_magazines.append(element.name)
+        else:
+            pass
+
+    def show_all_books(self):
+        print(Main.list_books)
+
+    def show_all_magazines(self):
+        print(Main.list_magazines)
+
+
+bazar = Main()
+book1 = Book('3ti@')
+book2 = Book('GP')
+book3 = Book('step')
+magazine1 = Magazine('Play Boy')
+magazine2 = Magazine('Cars')
+
+bazar.add(book1)
+bazar.add(magazine2)
+bazar.add(book2)
+bazar.add(book3)
+bazar.add(magazine1)
+
+bazar.show_all_books()
+print('-' * 40)
+bazar.show_all_magazines()
