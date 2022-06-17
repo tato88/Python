@@ -42,41 +42,59 @@
 #
 #
 # class Main:
-#     notes_list = []
 #
 #     def __add__(self, other):
-#         Main.notes_list.append((other.name, other.price))
+#         notes_list = open('notebook.txt', 'a')
+#         notes_list.write(''.join(f'{other.name} - {other.price}\n'))
+#         notes_list.close()
 #
 #     @decor
 #     def show_all_notes(self):
-#         print(Main.notes_list)
+#         notes_list = open('notebook.txt', 'r')
+#         print(notes_list.readlines())
+#         notes_list.close()
 #
 #     @decor
 #     def total_price(self):
+#         notes_list = open('notebook.txt', 'r')
 #         prices_list = []
-#         for i in Main.notes_list:
-#             prices_list.append(int(i[1]))
+#         for i in notes_list.readlines():
+#             if i != '\n':
+#                 prices_list.append(int(i.split(' - ')[1]))
 #         total = sum(prices_list)
 #         print(f'total is: {total}')
+#         notes_list.close()
 #
 #     @decor
 #     def most_expensive(self):
+#         notes_list = open('notebook.txt', 'r')
 #         x = 0
 #         p = ''
-#         for i in Main.notes_list:
-#             if int(i[1]) > x:
-#                 x = int(i[1])
-#                 p = i[0]
+#         for i in notes_list.readlines():
+#             if i != '\n':
+#                 if int(i.split(' - ')[1]) > x:
+#                     x = int(i.split(' - ')[1])
+#                     p = i.split(' - ')[0]
 #         print(f'Most expensive is: {p, x}')
+#         notes_list.close()
 #
 #     @decor
 #     def find_purchase(self):
+#         notes_list = open('notebook.txt', 'r')
 #         prices_list = []
 #         search = input('What are you search?')
-#         for i in Main.notes_list:
-#             if search == i[0]:
-#                 print(i)
+#         for i in notes_list.readlines():
+#             if i != '\n':
+#                 if search == i.split(' - ')[0]:
+#                     print(i)
+#         notes_list.close()
 #
+#     @decor
+#     def clear_notebook(self):
+#         notes_list = open('notebook.txt', 'w')
+#         notes_list.write('')
+#         notes_list.close()
+#         print('Nootebook is clear')
 #
 # class Purchase:
 #     def __init__(self, name, price):
@@ -95,6 +113,7 @@
 #         print('3) Total Price')
 #         print('4) Most expensive Purchase')
 #         print('5) Find Purchase')
+#         print('99) Clear Notebook')
 #         print('9) Exit')
 #         move = input('DO: ')
 #         try:
@@ -111,6 +130,8 @@
 #                     new_notebook.most_expensive()
 #                 case '5':
 #                     new_notebook.find_purchase()
+#                 case '99':
+#                     new_notebook.clear_notebook()
 #                 case '9':
 #                     return
 #
