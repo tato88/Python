@@ -1,3 +1,7 @@
+import json
+from typing import TypedDict
+
+
 def decor(func):
     def inner(*args):
         print('*' * 20)
@@ -7,94 +11,50 @@ def decor(func):
     return inner
 
 
-class Person:
-    def __init__(self, name):
-        self.name = name
-
-    def __str__(self):
-        return self.name
-
-
-class Pet:
-    def __init__(self, animal, nickname):
-        self.animal = animal
-        self.nickname = nickname
-
-    def __str__(self):
-        return self.animal, self.nickname
+ZooType = TypedDict('ZooType', {'persone': str, 'Pets': list})
 
 
 class ZooClub:
-    club_list = {}
+    def __init__(self, file_name):
+        self.file_name = file_name
+        self.club_list: list[ZooType] = []
+        try:
+            with open(file_name) as file:
+                self.club_list: list[ZooType] = json.load(file)
+        except:
+            pass
 
-    def add_persone(self, other):
-        ZooClub.club_list.update({f'{Person(other)}': []})
-
-    def add_pet(self, master, animal, nickname):
-        for i in ZooClub.club_list:
-            if i == master:
-                ZooClub.club_list[i].append(Pet(animal, nickname).__str__())
-
-    def del_pet(self, master, nickname):
-        for i in ZooClub.club_list:
-            if i == master:
-                for j in ZooClub.club_list[i]:
-                    if j[1] == nickname:
-                        ZooClub.club_list[i].remove(j)
-
-    def del_persone(self, name):
-        ZooClub.club_list.pop(name)
-
-    def del_animal(self, animal):
-        for i in ZooClub.club_list:
-            for j in ZooClub.club_list[i]:
-                if j[0] == animal:
-                    ZooClub.club_list[i].remove(j)
+    def add_persone(self):
+        with open(self.file_name, 'w') as file:
+            persone = input('name? ')
+        self.club_list.append({'persone': persone, 'Pets': []})
+        json.dump(self.club_list, file)
 
     @decor
-    def show_club(self):
-        print(ZooClub.club_list)
+    def show_all(self):
+        if not self.club_list:
+            print('there is no members')
+            return
+        for item in self.club_list:
+            print(item)
 
 
-# x = {
-#     'Person.name': [('cat', 'igor'), ('dog', 'igor')],'Person.name1': ['dog', 'ospa']
-# }
+zooclub = ZooClub('zooclub.json')
 
+while True:
+    print('1) додати учасника в клуб')
+    print('2) додати тваринку до учасника клубу')
+    print('3) видалити тваринку з власника ')
+    print('4) видалити учасника клубу ')
+    print('5) видалити конкретну тваринку з усіх власників')
+    print('6) Show Zoo Club')
+    move = input('DO: ')
+    try:
+        match move:
+            case '1':
+                zooclub.add_persone()
+            case '6':
+                zooclub.show_all()
 
-def zooclub():
-    new_zooclub = ZooClub()
-    while True:
-        print('1) додати учасника в клуб')
-        print('2) додати тваринку до учасника клубу')
-        print('3) видалити тваринку з власника ')
-        print('4) видалити учасника клубу ')
-        print('5) видалити конкретну тваринку з усіх власників')
-        print('6) Show Zoo Club')
-        move = input('DO: ')
-        try:
-            match move:
-                case '1':
-                    x = input('Name? ')
-                    new_zooclub.add_persone(x)
-                case '2':
-                    x = input('master? ')
-                    y = input('animal? ')
-                    z = input('nickname? ')
-                    new_zooclub.add_pet(x, y, z)
-                case '3':
-                    x = input('master? ')
-                    y = input('nickname? ')
-                    new_zooclub.del_pet(x, y)
-                case '4':
-                    x = input('name? ')
-                    new_zooclub.del_persone(x)
-                case '5':
-                    x = input('which animal you wanna delete from all masters? ')
-                    new_zooclub.del_animal(x)
-                case '6':
-                    new_zooclub.show_club()
-        except Exception as err:
-            print(err)
-
-
-zooclub()
+    except Exception as err:
+        print(err)
