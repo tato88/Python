@@ -23,37 +23,37 @@ class Pet:
     def __str__(self):
         return self.animal, self.nickname
 
-
-class Zoo_club:
+aaa
+class ZooClub:
     club_list = {}
 
-    def __add__(self, other):
-        Zoo_club.club_list.update({f'{Person(other)}': []})
+    def add_persone(self, other):
+        ZooClub.club_list.update({f'{Person(other)}': []})
 
     def add_pet(self, master, animal, nickname):
-        for i in Zoo_club.club_list:
+        for i in ZooClub.club_list:
             if i == master:
-                Zoo_club.club_list[i].append(Pet(animal, nickname).__str__())
+                ZooClub.club_list[i].append(Pet(animal, nickname).__str__())
 
     def del_pet(self, master, nickname):
-        for i in Zoo_club.club_list:
+        for i in ZooClub.club_list:
             if i == master:
-                for j in Zoo_club.club_list[i]:
+                for j in ZooClub.club_list[i]:
                     if j[1] == nickname:
-                        Zoo_club.club_list[i].remove(j)
+                        ZooClub.club_list[i].remove(j)
 
     def del_persone(self, name):
-        Zoo_club.club_list.pop(name)
+        ZooClub.club_list.pop(name)
 
     def del_animal(self, animal):
-        for i in Zoo_club.club_list:
-            for j in Zoo_club.club_list[i]:
+        for i in ZooClub.club_list:
+            for j in ZooClub.club_list[i]:
                 if j[0] == animal:
-                    Zoo_club.club_list[i].remove(j)
+                    ZooClub.club_list[i].remove(j)
 
     @decor
     def show_club(self):
-        print(Zoo_club.club_list)
+        print(ZooClub.club_list)
 
 
 # x = {
@@ -62,7 +62,7 @@ class Zoo_club:
 
 
 def zooclub():
-    new_zooclub = Zoo_club()
+    new_zooclub = ZooClub()
     while True:
         print('1) додати учасника в клуб')
         print('2) додати тваринку до учасника клубу')
@@ -75,7 +75,7 @@ def zooclub():
             match move:
                 case '1':
                     x = input('Name? ')
-                    new_zooclub.__add__(x)
+                    new_zooclub.add_persone(x)
                 case '2':
                     x = input('master? ')
                     y = input('animal? ')
