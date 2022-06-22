@@ -5,7 +5,8 @@ ZooType = TypedDict('ZooType', {'persone': str, 'Pets': list})
 
 
 class ZooClub:
-    def __init__(self, file_name):
+    def __init__(self, file_name, name):
+        self.name = name
         self.file_name = file_name
         self.club_list: list[ZooType] = []
         try:
@@ -104,6 +105,7 @@ class ZooClub:
 
     # 6
     def show_all(self):
+        print('Зооклуб ', self.name)
         if not self.club_list:
             print('there is no members')
             return
@@ -111,7 +113,7 @@ class ZooClub:
             print(item)
 
 
-zooclub = ZooClub('zooclub.json')
+zooclub = ZooClub('zooclub.json', input('Введіть назву клубу: '))
 
 while True:
     print('1) додати учасника в клуб')
