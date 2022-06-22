@@ -1,16 +1,6 @@
 import json
 from typing import TypedDict
 
-
-def decor(func):
-    def inner(*args):
-        print('*' * 20)
-        func(args)
-        print('*' * 20)
-
-    return inner
-
-
 ZooType = TypedDict('ZooType', {'persone': str, 'Pets': list})
 
 
@@ -25,12 +15,14 @@ class ZooClub:
             pass
 
     def add_persone(self):
-        with open(self.file_name, 'w') as file:
-            persone = input('name? ')
-        self.club_list.append({'persone': persone, 'Pets': []})
-        json.dump(self.club_list, file)
+        try:
+            with open(self.file_name, 'w') as file:
+                persone = input('name? ')
+                self.club_list.append({'persone': persone, 'Pets': []})
+                json.dump(self.club_list, file)
+        except:
+            print('Щось пішло не так!!!')
 
-    @decor
     def show_all(self):
         if not self.club_list:
             print('there is no members')
