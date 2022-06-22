@@ -23,7 +23,7 @@ class Pet:
     def __str__(self):
         return self.animal, self.nickname
 
-aaa
+
 class ZooClub:
     club_list = {}
 
